@@ -27,8 +27,8 @@ On regular Android there are connections to
 
 The only thing thats partly secure is to use a custom DNS server blocking all the tracking, like NextDNS, and also NetGuard.
 
-Note: System apps can bypass an "always on, block other connections" VPN.
+Note: System apps can bypass an "always on, block other connections" VPN. So NetGuard, Orbot or a privacy-friendly VPN do not apply here! Google still knows where you are.
 
 Android is not a private platform.
 
-The only privacy friendly OS is GrapheneOS.
+The only privacy friendly Android is GrapheneOS.
