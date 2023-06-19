@@ -1,0 +1,55 @@
+#!/bin/bash
+
+###### APK-Signer made easy #######
+
+# Apksigner is a tool to verify the cryptographic origin of Android apps
+# Each Android app has to be signed to be able to install
+# Once installed, you can only update the app if it has the same signature, so you dont need to repeat this
+
+# How-To-Use:
+# have this script in a location of your $PATH
+# run "apkverify app.apk" and check if the output is correct
+
+# convert language to english
+# export LC_ALL=C && \
+
+# first header
+
+cat <<EOF
+
+===== APK Signer Output =====
+
+EOF
+
+# APK-Signer verify; only show true and the last two lines
+# temporary file as otherwise the seperator does not work
+apksigner verify -v $1  | grep true | tail -n 2 | tee .tempfile.tmp && \
+cat ".tempfile.tmp" && rm -f ".tempfile.tmp" && \
+
+# next header
+cat <<EOF
+
+===== Certificate Output =====
+
+EOF
+
+# extract the name without ".apk"
+name=${1%.apk} && \
+
+# make such a directory
+mkdir $name && \
+
+# copy name.apk to name.zip
+cp $1 $name.zip && \
+
+# unzip app.zip quietly and remove app.zip
+unzip -q $name.zip -d $name && rm $name.zip && \
+
+# move to that dir
+cd $name && \
+
+# validate certificate
+keytool -printcert -file META-INF/CERT.RSA && \
+
+# move back and remove folder
+cd .. && rm -rf $name
