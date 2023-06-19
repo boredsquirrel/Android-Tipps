@@ -21,10 +21,12 @@ cat <<EOF
 
 EOF
 
-# APK-Signer verify; only show true and the last two lines
-# temporary file as otherwise the seperator does not work
-apksigner verify -v $1  | grep true | tail -n 2 | tee .tempfile.tmp && \
-cat ".tempfile.tmp" && rm -f ".tempfile.tmp" && \
+# APK-Signer verify; removing some lines currently does not work
+# asoutput=$(apksigner verify -v $1 | sed '1d;/false/d')
+
+# print all output to tempfile to fix issues
+apksigner verify -v $1 > tempfile.tmp && \
+cat tempfile.tmp && rm -rf tempfile.tmp && \
 
 # next header
 cat <<EOF
@@ -47,9 +49,5 @@ unzip -q $name.zip -d $name && rm $name.zip && \
 
 # move to that dir
 cd $name && \
-
-# validate certificate
-keytool -printcert -file META-INF/CERT.RSA && \
-
-# move back and remove folder
-cd .. && rm -rf $name
+# validate certificate, move back and remove folder
+keytool -printcert -file META-INF/CERT.RSA && cd .. && rm -rf $name
