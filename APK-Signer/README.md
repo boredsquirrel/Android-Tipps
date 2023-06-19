@@ -8,7 +8,7 @@ Luckily this works without extra PGP-Keys and everything.
 
 ```
 mkdir ~/.bin
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Android-Tipps/main/APK-Signer/apkverify -p ~/.bin
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Android-Tipps/main/APK-Signer/apkverify -P ~/.bin
 chmod +x ~/.bin/apkverify
 ```
 `
