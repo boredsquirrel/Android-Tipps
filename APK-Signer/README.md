@@ -19,7 +19,6 @@ user@machine ❯❯❯ apkverify shelter-github.apk
 ===== APK Signer Output =====
 
 Verified using v2 scheme (APK Signature Scheme v2): true
-Verified using v2 scheme (APK Signature Scheme v2): true
 
 ===== Certificate Output =====
 
